@@ -34,6 +34,10 @@
             input{
                 width: 224px;
                 padding-bottom: 8px;
+                border-top-width: 0px;
+                border-left-width: 0px;
+                border-right-width: 0px;
+                border-radius: 0px;
 
                 &:focus{
                     border-bottom-color: $primaryColor;
