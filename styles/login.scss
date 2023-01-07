@@ -8,11 +8,18 @@
         margin-bottom: 47px;
     }
 
+    .errorMsg {
+        color: $errorColor;
+    }
+
+    .successMsg {
+        color: $sucessColor;
+    }
+
     .form{
         padding: 10px;
 
-        p{
-            color: $errorColor;
+        .p{
             font-size: 16px;
             letter-spacing: 0.05em;
             text-align: center;
@@ -54,6 +61,18 @@
             border-radius: 12px;
             font-size: 16px;
             margin-top: 15px;
+        }
+    }
+
+    .signupButton {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+
+        p {
+            border-bottom: 1px solid $primaryColor;
+            color: $primaryColor;
+            cursor: pointer;
         }
     }
 
