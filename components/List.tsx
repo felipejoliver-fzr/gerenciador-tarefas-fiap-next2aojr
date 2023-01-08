@@ -7,7 +7,7 @@ import { executeRequest } from "../services/api";
 import moment from "moment";
 
 type ListProps = {
-    getFilteredData():void
+    getFilteredData(): void
     tasks: Task[]
 }
 
@@ -46,18 +46,18 @@ export const List: NextPage<ListProps> = ({ tasks, getFilteredData }) => {
                 finishPrevisionDate
             } as any;
 
-            if(finishDate){
+            if (finishDate) {
                 body.finishDate = finishDate;
             }
 
-            await executeRequest('task?id='+_id, 'PUT', body);
+            await executeRequest('task?id=' + _id, 'PUT', body);
             await getFilteredData();
             closeModal();
         } catch (e: any) {
             console.log('Ocorreu erro ao atualizar tarefa:', e);
-            if(e?.response?.data?.error){
+            if (e?.response?.data?.error) {
                 setErrorMsg(e?.response?.data?.error);
-            }else {
+            } else {
                 setErrorMsg('Ocorreu erro ao atualizar tarefa');
             }
         }
@@ -72,14 +72,14 @@ export const List: NextPage<ListProps> = ({ tasks, getFilteredData }) => {
                 return setErrorMsg('Favor preencher a tarefa');
             }
 
-            await executeRequest('task?id='+_id, 'DELETE');
+            await executeRequest('task?id=' + _id, 'DELETE');
             await getFilteredData();
             closeModal();
         } catch (e: any) {
             console.log('Ocorreu erro ao deletar tarefa:', e);
-            if(e?.response?.data?.error){
+            if (e?.response?.data?.error) {
                 setErrorMsg(e?.response?.data?.error);
-            }else {
+            } else {
                 setErrorMsg('Ocorreu erro ao deletar tarefa');
             }
         }
@@ -113,12 +113,26 @@ export const List: NextPage<ListProps> = ({ tasks, getFilteredData }) => {
                 <Modal.Body>
                     <p>Alterar uma tarefa</p>
                     {errorMsg && <p className="error">{errorMsg}</p>}
-                    <input type="text" placeholder="Nome da tarefa"
-                        value={name} onChange={e => setName(e.target.value)} />
-                    <input type="date" placeholder="Previsão de conclusão"
-                        value={finishPrevisionDate} onChange={e => setFinishPrevisionDate(e.target.value)} />
-                    <input type="date" placeholder="Data de conclusão"
-                        value={finishDate} onChange={e => setFinishDate(e.target.value)} />
+                    <input
+                        type="text"
+                        placeholder="Nome da tarefa"
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Previsão de conclusão"
+                        value={finishPrevisionDate}
+                        onChange={e => setFinishPrevisionDate(e.target.value)}
+                        onFocus={(e) => e.target.type = 'date'}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Data de conclusão"
+                        value={finishDate}
+                        onChange={e => setFinishDate(e.target.value)}
+                        onFocus={(e) => e.target.type = 'date'}
+                    />
                 </Modal.Body>
                 <Modal.Footer>
                     <div className="button col-12">
