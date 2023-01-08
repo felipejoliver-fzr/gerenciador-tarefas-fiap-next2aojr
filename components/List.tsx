@@ -120,13 +120,13 @@ export const List: NextPage<ListProps> = ({ tasks, getFilteredData }) => {
                         onChange={e => setName(e.target.value)}
                     />
                     <input
-                        type="text"
+                        type="date"
                         placeholder="Previsão de conclusão"
                         value={finishPrevisionDate}
                         onChange={e => setFinishPrevisionDate(e.target.value)}
                         onFocus={(e) => e.target.type = 'date'}
                         onBlur={(e) => {
-                            if(e.target.value === '') {
+                            if (e.target.value === '') {
                                 e.target.type = 'text'
                             }
                         }}
@@ -138,7 +138,7 @@ export const List: NextPage<ListProps> = ({ tasks, getFilteredData }) => {
                         onChange={e => setFinishDate(e.target.value)}
                         onFocus={(e) => e.target.type = 'date'}
                         onBlur={(e) => {
-                            if(e.target.value === '') {
+                            if (e.target.value === '') {
                                 e.target.type = 'text'
                             }
                         }}
