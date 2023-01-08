@@ -91,7 +91,7 @@ export const List: NextPage<ListProps> = ({ tasks, getFilteredData }) => {
         setErrorMsg('');
         setId(task._id);
         setName(task.name);
-        setFinishPrevisionDate(moment(task.finishPrevisionDate).format('yyyy-MM-DD'));
+        setFinishPrevisionDate(moment(task.finishPrevisionDate).utcOffset(3).format('yyyy-MM-DD'));
     }
 
     return (
@@ -125,6 +125,11 @@ export const List: NextPage<ListProps> = ({ tasks, getFilteredData }) => {
                         value={finishPrevisionDate}
                         onChange={e => setFinishPrevisionDate(e.target.value)}
                         onFocus={(e) => e.target.type = 'date'}
+                        onBlur={(e) => {
+                            if(e.target.value === '') {
+                                e.target.type = 'text'
+                            }
+                        }}
                     />
                     <input
                         type="text"
@@ -132,6 +137,11 @@ export const List: NextPage<ListProps> = ({ tasks, getFilteredData }) => {
                         value={finishDate}
                         onChange={e => setFinishDate(e.target.value)}
                         onFocus={(e) => e.target.type = 'date'}
+                        onBlur={(e) => {
+                            if(e.target.value === '') {
+                                e.target.type = 'text'
+                            }
+                        }}
                     />
                 </Modal.Body>
                 <Modal.Footer>
